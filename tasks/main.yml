@@ -7,6 +7,12 @@
   loop_control:
     loop_var: tasks
 
+- name: Install community.postgresql
+  ansible.builtin.command:
+    cmd: ansible-galaxy collection install community.postgresql
+  become: yes
+  when: ansible_facts.packages['ansible'] is not defined
+
 - name: Edit postgresql config
   ansible.builtin.lineinfile:
     path: "/etc/postgresql/{{ postgresql_version }}/main/postgresql.conf"
