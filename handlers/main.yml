@@ -1,0 +1,5 @@
+---
+- name: Restart PSQL
+  ansible.builtin.service:
+    name: postgresql
+    state: restarted
